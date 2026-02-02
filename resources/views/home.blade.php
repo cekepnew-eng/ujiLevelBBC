@@ -71,6 +71,7 @@
                     <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Bakso Bunderan Ciomas</h2>
                     <p class="mb-6 text-lg">Gurih, halal, dan favorit keluarga sejak lama. Cita rasa autentik yang memanjakan lidah Anda.</p>
                     <div class="flex gap-4">
+                        <h1>oman</h1>
                         <a href="#menu" class="bg-red-600 px-6 py-3 rounded-md font-semibold hover:bg-red-700">LIHAT MENU</a>
                         <a href="#lokasi" class="bg-pink-300 text-black px-6 py-3 rounded-md font-semibold hover:bg-pink-400">LOKASI KAMI</a>
                     </div>
