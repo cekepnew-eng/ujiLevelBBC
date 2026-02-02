@@ -81,7 +81,7 @@
     </section>
 
     <!-- ABOUT BBC HALAL -->
-    <section class="py-20 bg-[#3b1b16]">
+    <section class="py-20 bg-[#EFE1D1a]">
         <div class="max-w-7xl mx-auto px-6 space-y-12">
 
             <!-- CARD 1 - Image Left, Text Right -->
@@ -132,7 +132,7 @@
 
     <!-- MENU REKOMENDASI -->
     @if($recommendedItems->count() > 0)
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-[#EFE1D1a]">
         <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-4xl font-bold text-center mb-4">Menu Rekomendasi</h3>
             <p class="text-center mb-12 text-lg text-gray-700">Menu pilihan kami yang paling laris dan favorit pelanggan</p>
@@ -167,7 +167,7 @@
     @endif
 
     <!-- MENU BAKSO BUNDERAN CIOMAS -->
-    <section id="menu" class="py-32 bg-[#3b1b16]">
+    <section id="menu" class="py-32 bg-[#EFE1D1a]">
         <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-4xl font-bold text-center mb-6">Menu Bakso Bunderan Ciomas</h3>
             <p class="text-center mb-12 text-lg text-gray-700">Nikmati berbagai menu bakso lezat kami yang gurih dan menggugah selera</p>
@@ -190,7 +190,7 @@
     </section>
 
     <!-- TESTIMONI -->
-    <section id="testimoni" class="py-32 bg-[#f3e6d6]">
+    <section id="testimoni" class="py-32 bg-[#EFE1D1a]">
         <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-4xl font-bold text-center mb-16">Testimoni Pelanggan</h3>
             
@@ -227,7 +227,8 @@
     </section>
 
     <!-- LOKASI (2 CABANG) -->
-    <section id="lokasi" class="py-32 bg-[#3b1b16]">
+    <section id="lokasi" class="py-32 bg-[#
+    EFE1D1a]">
         <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-4xl font-bold text-center mb-20">Lokasi Bakso Bunderan Ciomas</h3>
             <div class="grid md:grid-cols-2 gap-12">
