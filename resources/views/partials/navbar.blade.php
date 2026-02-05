@@ -15,8 +15,20 @@
             </ul>
         </nav>
 
-        <div class="flex items-center">
-            <a href="#menu" class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-red-700">Pesan Sekarang</a>
+        <div class="flex items-center gap-3">
+            <!-- Cart Icon -->
+            @auth
+            <a href="{{ route('cart.index') }}" class="relative bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-red-700 flex items-center gap-2">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="hidden sm:inline">Keranjang</span>
+                <span id="cartCount" class="absolute -top-2 -right-2 bg-yellow-400 text-red-600 text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+            </a>
+            @else
+            <a href="{{ route('user.login') }}" class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-red-700">
+                <i class="fas fa-user mr-2"></i>
+                Login
+            </a>
+            @endauth
         </div>
     </div>
 </header>

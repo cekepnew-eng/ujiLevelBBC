@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,45 @@ Route::get('/menu', [PagesController::class, 'menu'])->name('menu');
 Route::get('/locations', [PagesController::class, 'locations'])->name('locations');
 Route::get('/testimonials', [PagesController::class, 'testimonials'])->name('testimonials');
 
+// Package pages
+Route::get('/paket/{type}', [PagesController::class, 'packageDetail'])->name('package.detail');
+
+// Contact Form
+Route::post('/contact', [PagesController::class, 'submitContact'])->name('contact.submit');
+
+// Menu Filter
+Route::get('/filter-menu', [PagesController::class, 'filterMenu'])->name('menu.filter');
+
+// User Authentication Routes
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('user.login');
+Route::post('/login', [UserController::class, 'login'])->name('user.login.submit');
+Route::get('/register', [UserController::class, 'showRegisterForm'])->name('user.register');
+Route::post('/register', [UserController::class, 'register'])->name('user.register.submit');
+Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
+
+// Cart Routes (require authentication)
+Route::middleware('auth')->group(function () {
+    Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/keranjang/add', [CartController::class, 'add'])->name('cart.add');
+    Route::put('/keranjang/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/keranjang/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::delete('/keranjang/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::get('/api/cart-count', [CartController::class, 'getCount']);
+});
+
+// Admin Authentication Routes
+Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+// Order Routes (Protected)
+Route::middleware('auth')->group(function () {
+    Route::get('/order/{package}', [OrderController::class, 'create'])->name('order.create');
+    Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+    Route::get('/payment/{order}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::post('/payment/{order}', [PaymentController::class, 'process'])->name('payment.process');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -33,17 +75,12 @@ Route::get('/testimonials', [PagesController::class, 'testimonials'])->name('tes
 
 Route::prefix('admin')->group(function () {
     // Dashboard
-    Route::get('/', function () {
-        $stats = [
-            'total_orders' => 0,
-            'pending_orders' => 0,
-            'total_menu' => \App\Models\MenuItem::count(),
-            'pending_testimonials' => 0,
-            'revenue' => 0,
-            'branches' => \App\Models\Branch::count()
-        ];
-        return view('admin.dashboard', compact('stats'));
-    })->name('admin.dashboard');
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    // Sales Reports
+    Route::get('/sales', function () {
+        return view('admin.sales.index');
+    })->name('admin.sales.index');
 
     // Menu Management
     Route::get('/menu', function () {
@@ -123,6 +160,11 @@ Route::prefix('admin')->group(function () {
         \App\Models\Testimonial::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Testimonial deleted');
     })->name('admin.testimonials.destroy');
+
+    // Orders
+    Route::get('/orders', function () {
+        return view('admin.orders.index');
+    })->name('admin.orders.index');
 
     // Branches
     Route::get('/branches', function () {
