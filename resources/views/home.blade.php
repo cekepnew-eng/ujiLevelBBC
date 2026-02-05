@@ -95,7 +95,7 @@
                     <!-- Right: Text Content -->
                     <div class="order-2 md:order-2">
                         <h3 class="text-3xl font-bold mb-4 text-[#3a2a1a] flex items-center gap-2">
-                            BAKSO BUNDERAN 
+                            BAKSO BUNDERAN CIOMAS
                             <span class="text-2xl">🔱</span>
                         </h3>
                         <p class="text-gray-700 mb-4 leading-relaxed text-justify">
