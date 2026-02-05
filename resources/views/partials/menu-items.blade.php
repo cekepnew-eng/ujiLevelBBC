@@ -8,12 +8,25 @@
                 <h4 class="text-xl font-bold mb-3">{{ $item->name }}</h4>
                 <p class="text-base text-gray-600 mb-3">{{ $item->description }}</p>
                 <div class="flex justify-between items-center">
-                    <span class="text-2xl font-bold text-amber-700">
-                        Rp {{ number_format($item->price, 0, ',', '.') }}
-                    </span>
-                    <button onclick="bukaModalOrder('{{ $item->name }}', {{ $item->price }})" 
-                            class="bg-red-600 text-white px-5 py-2 rounded font-semibold hover:bg-red-700">
-                        PESAN
+                    <!-- Delivery Apps -->
+                    <div class="flex gap-2">
+                        <a href="https://shopee.co.id/food" target="_blank" 
+                           class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center hover:bg-orange-600 transition">
+                            <i class="fas fa-shopping-bag text-white text-sm"></i>
+                        </a>
+                        <a href="https://food.grab.com/id/id/" target="_blank" 
+                           class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center hover:bg-green-600 transition">
+                            <i class="fas fa-motorcycle text-white text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/6281234567890" target="_blank" 
+                           class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center hover:bg-green-700 transition">
+                            <i class="fab fa-whatsapp text-white text-sm"></i>
+                        </a>
+                    </div>
+                    <button onclick="addToCart({{ $item->id }})" 
+                            class="cart-btn bg-red-600 text-white px-5 py-2 rounded font-semibold hover:bg-red-700 flex items-center gap-2">
+                        <i class="fas fa-cart-plus"></i>
+                        Keranjang
                     </button>
                 </div>
             </div>
